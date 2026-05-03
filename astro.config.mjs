@@ -2,7 +2,7 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import tailwindcss from '@tailwindcss/vite';
 
-const SITE = process.env.SITE_URL ?? 'https://prunerr.app';
+const SITE = process.env.SITE_URL ?? 'https://prunerr.media';
 const BASE = process.env.BASE_PATH ?? '/';
 
 export default defineConfig({
