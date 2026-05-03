@@ -1,0 +1,82 @@
+---
+---
+
+<section class="relative overflow-hidden pt-16 pb-20 sm:pt-24 sm:pb-28">
+  <div class="absolute inset-0 grid-noise opacity-50 pointer-events-none" aria-hidden="true"></div>
+
+  <div class="container-page relative">
+    <div class="mx-auto max-w-3xl text-center animate-fade-up">
+      <span class="badge mb-6">
+        <span class="size-1.5 rounded-full bg-accent-400 animate-pulse"></span>
+        v1.4.7 — out now on Docker Hub
+      </span>
+
+      <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-surface-50 leading-[1.05]">
+        Reclaim disk space.
+        <br />
+        <span class="text-gradient">Keep what you watch.</span>
+      </h1>
+
+      <p class="mt-6 text-lg sm:text-xl text-surface-300 leading-relaxed max-w-2xl mx-auto">
+        Prunerr connects to <strong class="text-surface-100">Plex</strong>, <strong class="text-surface-100">Sonarr</strong> and <strong class="text-surface-100">Radarr</strong> and removes media nobody watches — using rules you control, with a queue, grace periods, and Discord notifications before anything is deleted.
+      </p>
+
+      <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href="#install" class="btn btn-primary w-full sm:w-auto">
+          Install with Docker
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M5 12h14M12 5l7 7-7 7"/>
+          </svg>
+        </a>
+        <a href="https://github.com/helliott20/prunerr" class="btn btn-secondary w-full sm:w-auto">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+            <path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.1.82-.26.82-.58v-2.05c-3.34.73-4.04-1.61-4.04-1.61-.55-1.39-1.34-1.76-1.34-1.76-1.09-.74.08-.73.08-.73 1.21.09 1.84 1.24 1.84 1.24 1.07 1.84 2.81 1.31 3.5 1 .1-.78.42-1.31.76-1.61-2.66-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.23-3.22-.12-.3-.54-1.52.12-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.3-1.55 3.3-1.23 3.3-1.23.66 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.81 5.62-5.49 5.92.43.37.81 1.1.81 2.22v3.3c0 .32.22.69.83.58A12 12 0 0 0 12 .5z"/>
+          </svg>
+          Star on GitHub
+        </a>
+      </div>
+
+      <ul class="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-surface-400">
+        <li class="inline-flex items-center gap-2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-400" aria-hidden="true">
+            <path d="M20 6 9 17l-5-5"/>
+          </svg>
+          Self-hosted &amp; MIT licensed
+        </li>
+        <li class="inline-flex items-center gap-2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-400" aria-hidden="true">
+            <path d="M20 6 9 17l-5-5"/>
+          </svg>
+          Multi-arch Docker (amd64 / arm64)
+        </li>
+        <li class="inline-flex items-center gap-2">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="text-emerald-400" aria-hidden="true">
+            <path d="M20 6 9 17l-5-5"/>
+          </svg>
+          Unraid Community App
+        </li>
+      </ul>
+    </div>
+
+    <div class="relative mt-16 sm:mt-20 mx-auto max-w-6xl animate-fade-up">
+      <div class="absolute -inset-4 bg-gradient-to-tr from-accent-500/20 via-violet-500/10 to-cyan-500/10 blur-3xl rounded-3xl" aria-hidden="true"></div>
+      <div class="relative rounded-2xl border border-surface-700/60 bg-surface-900/60 backdrop-blur-sm overflow-hidden shadow-2xl shadow-black/40">
+        <div class="flex items-center gap-1.5 px-4 py-3 border-b border-surface-700/50 bg-surface-900/80">
+          <span class="size-2.5 rounded-full bg-ruby-500/70"></span>
+          <span class="size-2.5 rounded-full bg-accent-500/70"></span>
+          <span class="size-2.5 rounded-full bg-emerald-500/70"></span>
+          <span class="ml-3 font-mono text-xs text-surface-400">prunerr.local — Dashboard</span>
+        </div>
+        <img
+          src="/assets/dashboard.png"
+          alt="Prunerr dashboard with library stats, service health for Plex, Sonarr, Radarr and Tautulli, storage trends and scheduled scans"
+          width="1800"
+          height="1200"
+          loading="eager"
+          decoding="async"
+          class="w-full h-auto"
+        />
+      </div>
+    </div>
+  </div>
+</section>

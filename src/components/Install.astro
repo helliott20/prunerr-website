@@ -1,0 +1,124 @@
+---
+const dockerRun = `docker run -d \\
+  --name prunerr \\
+  -p 3000:3000 \\
+  -v /path/to/data:/app/data \\
+  -e PLEX_URL=http://your-plex:32400 \\
+  -e PLEX_TOKEN=your-plex-token \\
+  -e SONARR_URL=http://your-sonarr:8989 \\
+  -e SONARR_API_KEY=your-sonarr-api-key \\
+  -e RADARR_URL=http://your-radarr:7878 \\
+  -e RADARR_API_KEY=your-radarr-api-key \\
+  helliott20/prunerr:latest`;
+
+const compose = `services:
+  prunerr:
+    image: helliott20/prunerr:latest
+    container_name: prunerr
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./data:/app/data
+    environment:
+      PLEX_URL: http://plex:32400
+      PLEX_TOKEN: \${PLEX_TOKEN}
+      SONARR_URL: http://sonarr:8989
+      SONARR_API_KEY: \${SONARR_API_KEY}
+      RADARR_URL: http://radarr:7878
+      RADARR_API_KEY: \${RADARR_API_KEY}
+    restart: unless-stopped`;
+---
+
+<section id="install" class="py-20 sm:py-28 border-t border-surface-800/60">
+  <div class="container-page">
+    <div class="mx-auto max-w-2xl text-center">
+      <p class="text-sm uppercase tracking-[0.2em] text-accent-400 font-semibold">Install</p>
+      <h2 class="mt-3 font-display text-3xl sm:text-4xl font-bold tracking-tight text-surface-50">
+        Up and running in under five minutes
+      </h2>
+      <p class="mt-4 text-surface-300 text-lg">
+        Single Docker container. Multi-arch image — runs on amd64 and arm64.
+      </p>
+    </div>
+
+    <div class="mt-12 grid grid-cols-1 lg:grid-cols-2 gap-5 max-w-5xl mx-auto">
+      <div class="card overflow-hidden">
+        <div class="flex items-center justify-between px-5 py-3 border-b border-surface-700/40 bg-surface-900/60">
+          <span class="font-display text-sm font-semibold text-surface-100">Docker</span>
+          <button
+            type="button"
+            data-copy-target="docker-run"
+            class="text-xs font-medium text-surface-400 hover:text-accent-300 transition-colors px-2 py-1 rounded-md hover:bg-surface-800/60"
+          >
+            Copy
+          </button>
+        </div>
+        <pre class="overflow-x-auto p-5 text-sm font-mono leading-relaxed text-surface-200" id="docker-run">{dockerRun}</pre>
+      </div>
+
+      <div class="card overflow-hidden">
+        <div class="flex items-center justify-between px-5 py-3 border-b border-surface-700/40 bg-surface-900/60">
+          <span class="font-display text-sm font-semibold text-surface-100">docker-compose.yml</span>
+          <button
+            type="button"
+            data-copy-target="docker-compose"
+            class="text-xs font-medium text-surface-400 hover:text-accent-300 transition-colors px-2 py-1 rounded-md hover:bg-surface-800/60"
+          >
+            Copy
+          </button>
+        </div>
+        <pre class="overflow-x-auto p-5 text-sm font-mono leading-relaxed text-surface-200" id="docker-compose">{compose}</pre>
+      </div>
+    </div>
+
+    <div class="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-5xl mx-auto">
+      <a href="https://hub.docker.com/r/helliott20/prunerr" class="card p-5 group">
+        <div class="flex items-center gap-3">
+          <div class="size-10 rounded-lg bg-cyan-500/10 border border-cyan-500/20 inline-flex items-center justify-center text-cyan-400">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22.7 9.5h-3v-2.7h-2.6V9.5h-2.6V6.8h-2.6V9.5H9.3V6.8H6.7V9.5H4.1V6.8H1.5v5.3h21.2c0-1.5-1.3-2.6-2.7-2.6h2.7zM2.6 13.4c-.6 0-1.1.5-1.1 1.1v2.4c0 1.5 1.6 2.8 3.6 2.8 4 .1 8.4-2.6 8.4-7.4H2.6z"/></svg>
+          </div>
+          <div>
+            <div class="font-display font-semibold text-surface-50">Docker Hub</div>
+            <div class="text-xs text-surface-400 font-mono">helliott20/prunerr</div>
+          </div>
+        </div>
+      </a>
+      <a href="https://forums.unraid.net/topic/196929-support-prunerr-media-library-cleanup-tool/" class="card p-5 group">
+        <div class="flex items-center gap-3">
+          <div class="size-10 rounded-lg bg-accent-500/10 border border-accent-500/20 inline-flex items-center justify-center text-accent-400 font-display font-bold">
+            U
+          </div>
+          <div>
+            <div class="font-display font-semibold text-surface-50">Unraid</div>
+            <div class="text-xs text-surface-400">Community App + support thread</div>
+          </div>
+        </div>
+      </a>
+      <a href="https://github.com/helliott20/prunerr/wiki/Installation" class="card p-5 group">
+        <div class="flex items-center gap-3">
+          <div class="size-10 rounded-lg bg-violet-500/10 border border-violet-500/20 inline-flex items-center justify-center text-violet-400">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2zM22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <div>
+            <div class="font-display font-semibold text-surface-50">Full guide</div>
+            <div class="text-xs text-surface-400">Installation walkthrough</div>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  document.querySelectorAll('[data-copy-target]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const target = document.getElementById(btn.dataset.copyTarget);
+      if (!target) return;
+      navigator.clipboard.writeText(target.textContent ?? '').then(() => {
+        const original = btn.textContent;
+        btn.textContent = 'Copied';
+        setTimeout(() => { btn.textContent = original; }, 1600);
+      });
+    });
+  });
+</script>
