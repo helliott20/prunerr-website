@@ -33,7 +33,10 @@ jobs:
 
       - name: Build site
         env:
-          SITE_URL: https://prunerr.app
+          # When DNS is pointed at prunerr.app, change SITE_URL/BASE_PATH:
+          #   SITE_URL=https://prunerr.app  BASE_PATH=/
+          SITE_URL: https://helliott20.github.io
+          BASE_PATH: /prunerr-website/
         run: npm run build
 
       - name: Upload artifact
