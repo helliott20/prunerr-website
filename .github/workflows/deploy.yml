@@ -4,6 +4,12 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
+  schedule:
+    # Daily rebuild so the version badge picks up new Prunerr releases even if
+    # nobody pushes to this repo. UTC.
+    - cron: '17 6 * * *'
+  repository_dispatch:
+    types: [prunerr-release]
 
 permissions:
   contents: read
@@ -37,6 +43,9 @@ jobs:
           #   SITE_URL=https://prunerr.app  BASE_PATH=/
           SITE_URL: https://helliott20.github.io
           BASE_PATH: /prunerr-website/
+          # Authenticated GitHub API requests get 5,000/hr instead of 60/hr —
+          # belt-and-braces in case the daily cron lands during a rate-limit dip.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: npm run build
 
       - name: Upload artifact

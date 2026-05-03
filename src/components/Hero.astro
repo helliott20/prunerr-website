@@ -1,6 +1,9 @@
 ---
+import { fetchLatestRelease } from '../lib/version';
+
 const base = import.meta.env.BASE_URL;
 const dashboardUrl = `${base.replace(/\/$/, '')}/assets/dashboard.png`;
+const release = await fetchLatestRelease();
 ---
 
 <section class="relative overflow-hidden pt-16 pb-20 sm:pt-24 sm:pb-28">
@@ -8,10 +11,10 @@ const dashboardUrl = `${base.replace(/\/$/, '')}/assets/dashboard.png`;
 
   <div class="container-page relative">
     <div class="mx-auto max-w-3xl text-center animate-fade-up">
-      <span class="badge mb-6">
+      <a href={release.url} class="badge mb-6 hover:bg-accent-500/15 hover:border-accent-500/40 transition-colors">
         <span class="size-1.5 rounded-full bg-accent-400 animate-pulse"></span>
-        v1.4.7 — out now on Docker Hub
-      </span>
+        {release.tag} — out now on Docker Hub
+      </a>
 
       <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-surface-50 leading-[1.05]">
         Reclaim disk space.
