@@ -4,10 +4,6 @@ on:
   push:
     branches: [main]
   workflow_dispatch:
-  schedule:
-    # Daily rebuild so the version badge picks up new Prunerr releases even if
-    # nobody pushes to this repo. UTC.
-    - cron: '17 6 * * *'
   repository_dispatch:
     types: [prunerr-release]
 

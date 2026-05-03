@@ -11,9 +11,13 @@ const release = await fetchLatestRelease();
 
   <div class="container-page relative">
     <div class="mx-auto max-w-3xl text-center animate-fade-up">
-      <a href={release.url} class="badge mb-6 hover:bg-accent-500/15 hover:border-accent-500/40 transition-colors">
+      <a
+        href={release.url}
+        class="badge mb-6 hover:bg-accent-500/15 hover:border-accent-500/40 transition-colors"
+        data-release-link
+      >
         <span class="size-1.5 rounded-full bg-accent-400 animate-pulse"></span>
-        {release.tag} — out now on Docker Hub
+        <span data-release-tag>{release.tag}</span> — out now on Docker Hub
       </a>
 
       <h1 class="font-display text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-surface-50 leading-[1.05]">
@@ -85,3 +89,28 @@ const release = await fetchLatestRelease();
     </div>
   </div>
 </section>
+
+<script is:inline>
+  (function refreshReleaseBadge() {
+    const tagEl = document.querySelector('[data-release-tag]');
+    const linkEl = document.querySelector('[data-release-link]');
+    if (!tagEl || !linkEl) return;
+
+    fetch('https://api.github.com/repos/helliott20/prunerr/releases/latest', {
+      headers: { Accept: 'application/vnd.github+json' },
+    })
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (!data || !data.tag_name) return;
+        if (tagEl.textContent !== data.tag_name) {
+          tagEl.textContent = data.tag_name;
+        }
+        if (data.html_url) {
+          linkEl.setAttribute('href', data.html_url);
+        }
+      })
+      .catch(() => {
+        // Build-time fallback already rendered — nothing else to do.
+      });
+  })();
+</script>
