@@ -2,7 +2,10 @@
 import { fetchLatestRelease } from '../lib/version';
 
 const base = import.meta.env.BASE_URL;
-const dashboardUrl = `${base.replace(/\/$/, '')}/assets/dashboard.png`;
+const assetBase = base.replace(/\/$/, '');
+const dashboardUrl = `${assetBase}/assets/dashboard.png`;
+const bragVideoUrl = `${assetBase}/assets/prunerr-brag.mp4`;
+const bragPosterUrl = `${assetBase}/assets/prunerr-brag.jpg`;
 const release = await fetchLatestRelease();
 ---
 
@@ -74,23 +77,47 @@ const release = await fetchLatestRelease();
           <span class="size-2.5 rounded-full bg-ruby-500/70"></span>
           <span class="size-2.5 rounded-full bg-accent-500/70"></span>
           <span class="size-2.5 rounded-full bg-emerald-500/70"></span>
-          <span class="ml-3 font-mono text-xs text-surface-400">prunerr.local — Dashboard</span>
+          <span class="ml-3 font-mono text-xs text-surface-400">prunerr.local — Overview</span>
         </div>
-        <img
-          src={dashboardUrl}
-          alt="Prunerr dashboard with library stats, service health for Plex, Sonarr, Radarr and Tautulli, storage trends and scheduled scans"
-          width="1800"
-          height="1200"
-          loading="eager"
-          decoding="async"
+        <video
+          src={bragVideoUrl}
+          poster={bragPosterUrl}
+          width="1920"
+          height="1080"
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="metadata"
+          aria-label="20-second overview: a full disk, a rule written in plain English, a deletion queue with a grace period, and the space coming back"
           class="w-full h-auto"
-        />
+          data-hero-video
+        >
+          <img
+            src={dashboardUrl}
+            alt="Prunerr dashboard with library stats, service health for Plex, Sonarr, Radarr and Tautulli, storage trends and scheduled scans"
+            width="1800"
+            height="1200"
+            loading="eager"
+            decoding="async"
+            class="w-full h-auto"
+          />
+        </video>
       </div>
     </div>
   </div>
 </section>
 
 <script is:inline>
+  (function respectReducedMotion() {
+    // Leave the poster frame up for people who've asked for less motion.
+    const video = document.querySelector('[data-hero-video]');
+    if (!video || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    video.removeAttribute('autoplay');
+    video.pause();
+    video.setAttribute('controls', '');
+  })();
+
   (function refreshReleaseBadge() {
     const tagEl = document.querySelector('[data-release-tag]');
     const linkEl = document.querySelector('[data-release-link]');
